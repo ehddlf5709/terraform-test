@@ -63,19 +63,21 @@ resource "aws_route_table" "PRD-CUS-RT-PUB" {
   }
 }
 
-resource "aws_route" "vgw_route" {
+/* resource "aws_route" "vgw_route" {
   route_table_id         = aws_route_table.PRD-CUS-RT-PRI-2A.id  # 라우팅 테이블 ID
   destination_cidr_block = "10.240.0.0/16"  # 대상 CIDR 블록
   gateway_id             = aws_vpn_gateway.VGW.id  # VGW ID
 
   depends_on = [aws_vpn_gateway.VGW]
 }
+*/
 
 # VGW 경로 전파 활성화
-resource "aws_vpn_gateway_route_propagation" "vgw" {
+/* resource "aws_vpn_gateway_route_propagation" "vgw" {
   vpn_gateway_id = aws_vpn_gateway.VGW.id
   route_table_id = aws_route_table.PRD-CUS-RT-PUB.id
 }
+*/
 
 # Private rtb
 resource "aws_route_table" "PRD-CUS-RT-PRI-2A" {
