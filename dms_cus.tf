@@ -58,14 +58,19 @@ resource "aws_iam_role_policy_attachment" "dms_role_policy_attachment" {
 
 # 복제 서브넷 그룹 생성
 resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
-  replication_subnet_group_id   = "hf-replication-subnet-group"
+  replication_subnet_group_id = "hf-replication-subnet-group"  # 알파벳으로 시작
   replication_subnet_group_description = "Subnet group for DMS replication instance"
-  subnet_ids = [aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id]
+  subnet_ids = [
+    aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id
+  ]
 
   tags = {
     Name = "hf_replication_subnet_group"
   }
-  depends_on = [aws_subnet.PRD-CUS-VPC-PRI-2A, aws_subnet.PRD-CUS-VPC-PRI-2C]  # 서브넷 리소스에 의존
+
+  depends_on = [
+    aws_subnet.PRD-CUS-VPC-PRI-2A, aws_subnet.PRD-CUS-VPC-PRI-2C
+  ]  # 서브넷 리소스에 의존
 }
 
 # DMS Replication Instance 생성
