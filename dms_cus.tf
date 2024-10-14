@@ -58,7 +58,8 @@ resource "aws_iam_role_policy_attachment" "dms_role_policy_attachment" {
 
 # 복제 서브넷 그룹 생성
 resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
-  replication_subnet_group_id = "hf_replication_subnet_group"  # 올바른 속성
+  replication_subnet_group_id   = "hf_replication_subnet_group"
+  replication_subnet_group_description = "Subnet group for DMS replication instance"
   subnet_ids = [aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id]
 
   tags = {
@@ -72,7 +73,7 @@ resource "aws_dms_replication_instance" "hf_replication_instance" {
   replication_instance_class    = "dms.t3.medium"
   allocated_storage             = 50
   vpc_security_group_ids        = [aws_security_group.PRD-DB-SG.id] 
-  replication_subnet_group_id   = aws_dms_subnet_group.hf_replication_subnet_group.id  # 수정
+  replication_subnet_group_id   = aws_dms_replication_subnet_group.hf_replication_subnet_group.id  # 수정
   availability_zone             = "ap-northeast-2a"    # 단일 가용 영역으로 설정
   publicly_accessible           = false                # 퍼블릭 액세스 비활성화
   auto_minor_version_upgrade     = false                # 자동 버전 업그레이드 비활성화
