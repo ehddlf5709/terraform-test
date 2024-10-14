@@ -1,4 +1,4 @@
-provider "aws" {
+/* provider "aws" {
   alias  = "other_region"
   region = "us-east-1"  # 다른 리전
 }
@@ -51,3 +51,4 @@ resource "aws_vpn_connection_route" "STS_STATIC2" {
   vpn_connection_id     = aws_vpn_connection.STS.id
   destination_cidr_block = "10.250.0.0/16"  # 가상 네트워크 CIDR
 }
+*/
