@@ -57,9 +57,9 @@ resource "aws_iam_role_policy_attachment" "dms_role_policy_attachment" {
 
 
 # 복제 서브넷 그룹 생성
-resource "aws_dms_subnet_group" "hf_replication_subnet_group" {
-  subnet_group_id = "hf_replication_subnet_group"
-  subnet_ids      = [aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id] 
+resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
+  replication_subnet_group_id = "hf_replication_subnet_group"  # 올바른 속성
+  subnet_ids = [aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id]
 
   tags = {
     Name = "hf_replication_subnet_group"
