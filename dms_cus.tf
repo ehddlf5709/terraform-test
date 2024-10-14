@@ -34,6 +34,9 @@ resource "aws_iam_policy" "dms_policy" {
           "dms:DescribeReplicationTasks",
           "dms:StartReplicationTask",
           "dms:StopReplicationTask"
+          "dms:CreateReplicationSubnetGroup", 
+          "dms:DeleteReplicationSubnetGroup", 
+          "dms:ModifyReplicationSubnetGroup"
         ],
         Resource = "*"
       },
