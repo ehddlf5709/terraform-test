@@ -69,7 +69,7 @@ resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
 
 # DMS Replication Instance 생성
 resource "aws_dms_replication_instance" "hf_replication_instance" {
-  replication_instance_id       = "hf_replication_instance"
+  replication_instance_id       = "hf-replication-instance"
   replication_instance_class    = "dms.t3.medium"
   allocated_storage             = 50
   vpc_security_group_ids        = [aws_security_group.PRD-DB-SG.id] 
@@ -77,7 +77,6 @@ resource "aws_dms_replication_instance" "hf_replication_instance" {
   availability_zone             = "ap-northeast-2a"    # 단일 가용 영역으로 설정
   publicly_accessible           = false                # 퍼블릭 액세스 비활성화
   auto_minor_version_upgrade     = false                # 자동 버전 업그레이드 비활성화
-  replication_instance_arn      = aws_iam_role.dms_role.arn  # IAM 역할 사용
   
   tags = {
     Name = "hf_replication_instance"
