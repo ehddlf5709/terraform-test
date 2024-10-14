@@ -33,7 +33,7 @@ resource "aws_iam_policy" "dms_policy" {
           "dms:DescribeEndpoints",
           "dms:DescribeReplicationTasks",
           "dms:StartReplicationTask",
-          "dms:StopReplicationTask"
+          "dms:StopReplicationTask",
           "dms:CreateReplicationSubnetGroup", 
           "dms:DeleteReplicationSubnetGroup", 
           "dms:ModifyReplicationSubnetGroup"
