@@ -65,6 +65,7 @@ resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
   tags = {
     Name = "hf_replication_subnet_group"
   }
+  depends_on = [aws_subnet.PRD-CUS-VPC-PRI-2A, aws_subnet.PRD-CUS-VPC-PRI-2C]  # 서브넷 리소스에 의존
 }
 
 # DMS Replication Instance 생성
