@@ -1,5 +1,5 @@
 # IAM 역할 생성
-resource "aws_iam_role" "dms_role" {
+resource "aws_iam_role" "dms_vpc_role" {
   name = "dms_role"
 
   assume_role_policy = jsonencode({
@@ -20,13 +20,13 @@ resource "aws_iam_role" "dms_role" {
 # IAM 역할에 AmazonDMSVPCManagementRole 정책 연결
 resource "aws_iam_role_policy_attachment" "dms_vpc_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSVPCManagementRole"
-  role      = aws_iam_role.dms_role.name
+  role      = aws_iam_role.dms_vpc_role.name
 }
 
 # IAM 역할에 AmazonDMSCloudWatchLogsRole 정책 연결
 resource "aws_iam_role_policy_attachment" "dms_cloudwatch_logs_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSCloudWatchLogsRole"
-  role      = aws_iam_role.dms_role.name
+  role      = aws_iam_role.dms_vpc_role.name
 }
 
 # IAM 정책 생성
@@ -71,7 +71,7 @@ resource "aws_iam_policy" "dms_policy" {
 
 # IAM 역할에 정책 연결
 resource "aws_iam_role_policy_attachment" "dms_role_policy_attachment" {
-  role       = aws_iam_role.dms_role.name
+  role       = aws_iam_role.dms_vpc_role.name
   policy_arn = aws_iam_policy.dms_policy.arn
 }
 
@@ -83,7 +83,7 @@ resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
   subnet_ids = [
     aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id
   ]
-iam_role_arn = aws_iam_role.dms_role.arn  # dms_role을 사용하도록 설정
+
   tags = {
     Name = "hf_replication_subnet_group"
   }
