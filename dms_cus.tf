@@ -73,6 +73,8 @@ resource "aws_iam_policy" "dms_policy" {
 resource "aws_iam_role_policy_attachment" "dms_role_policy_attachment" {
   role       = aws_iam_role.dms_vpc_role.name
   policy_arn = aws_iam_policy.dms_policy.arn
+
+  depends_on = [aws_iam_policy.dms_policy]  # 정책이 생성된 후에 역할에 연결
 }
 
 
