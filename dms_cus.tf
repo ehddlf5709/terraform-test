@@ -163,20 +163,20 @@ resource "aws_dms_replication_task" "hf-task" {
    target_endpoint_arn = aws_dms_endpoint.hf-target.endpoint_arn
   table_mappings        = jsonencode({
     rules = [
-      {
-        rule_type = "selection",      # 수정
-        rule_id   = "1",
-        rule_action = "include",      # 수정
-        filters = [
-          {
-            filter_type = "source",   # 수정
-            schema_name = "test",    # 소스 스키마 이름
-            table_name  = "%"         # 모든 테이블을 포함
-          }
-        ]
-      }
-    ]
-  })
+    {
+      "rule-type" = "selection",      # 수정
+      "rule-id"   = "1",
+      "rule-action" = "include",      # 수정
+      filters = [
+        {
+          "filter-type" = "source",   # 수정
+          "schema-name" = "test",     # 소스 스키마 이름
+          "table-name"  = "%"         # 모든 테이블을 포함
+        }
+      ]
+    }
+  ]
+})
 
   tags = {
     Name = "hf-task"
