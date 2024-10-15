@@ -158,7 +158,7 @@ resource "aws_dms_replication_task" "hf-task" {
   migration_type        = "full-load-and-cdc"   # 기존 마이그레이션 복제 및 지속적인 변경사항 복제
   replication_instance_arn = aws_dms_replication_instance.hf_replication_instance.replication_instance_arn
   source_endpoint_arn       = "arn:aws:dms:${var.region}:${data.aws_caller_identity.current.account_id}:endpoint:${aws_dms_endpoint.hf-source.endpoint_id}"
-  target_endpoint_arn       = "arn:aws:dms:${var.region}:${data.aws_caller_identity.current.account_id}:endpoint:${aws_dms_endpoint.target.endpoint_id}"
+  target_endpoint_arn       = "arn:aws:dms:${var.region}:${data.aws_caller_identity.current.account_id}:endpoint:${aws_dms_endpoint.hf-target.endpoint_id}"
   table_mappings        = jsonencode({
     rules = [
       {
