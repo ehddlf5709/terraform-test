@@ -55,7 +55,7 @@ resource "aws_iam_policy" "dms_policy" {
         Effect = "Allow",
         Action = [
           "ec2:DescribeSubnets",
-          "ec2:DescribeSecurityGroups"
+          "ec2:DescribeSecurityGroups",
           "ec2:CreateNetworkInterface",
           "ec2:DeleteNetworkInterface",
           "ec2:DescribeNetworkInterfaces",
