@@ -55,18 +55,6 @@ resource "aws_iam_policy" "dms_policy" {
         Resource = "*"
       },
       {
-        Effect = "Allow",
-        Action = [
-          "ec2:DescribeSubnets",
-          "ec2:DescribeSecurityGroups",
-          "ec2:CreateNetworkInterface",
-          "ec2:DeleteNetworkInterface",
-          "ec2:DescribeNetworkInterfaces",
-          "ec2:AttachNetworkInterface"
-        ],
-        Resource = "*"
-      },
-      {
       "Effect": "Allow",
       "Action": [
         "logs:CreateLogGroup",
@@ -106,7 +94,7 @@ resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
   ]
 
   tags = {
-    Name = "hf_replication_subnet_group"
+    Name = "hf-replication-subnet-group"
   }
 
   depends_on = [
