@@ -84,6 +84,8 @@ resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
     aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id
   ]
 
+  role_arn = aws_iam_role.dms_role.arn  # dms_role을 사용하도록 설정
+
   tags = {
     Name = "hf_replication_subnet_group"
   }
