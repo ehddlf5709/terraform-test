@@ -83,7 +83,7 @@ resource "aws_dms_replication_subnet_group" "hf_replication_subnet_group" {
   subnet_ids = [
     aws_subnet.PRD-CUS-VPC-PRI-2A.id, aws_subnet.PRD-CUS-VPC-PRI-2C.id
   ]
-
+iam_role_arn = aws_iam_role.dms_role.arn  # dms_role을 사용하도록 설정
   tags = {
     Name = "hf_replication_subnet_group"
   }
@@ -103,7 +103,7 @@ resource "aws_dms_replication_instance" "hf_replication_instance" {
   availability_zone             = "ap-northeast-2a"    # 단일 가용 영역으로 설정
   publicly_accessible           = false                # 퍼블릭 액세스 비활성화
   auto_minor_version_upgrade     = false                # 자동 버전 업그레이드 비활성화
-  iam_role_arn = aws_iam_role.dms_role.arn  # dms_role을 사용하도록 설정
+  
   tags = {
     Name = "hf_replication_instance"
   }
