@@ -17,12 +17,12 @@ resource "aws_iam_role" "dms_role" {
   })
 }
 
-resource "aws_iam_policy_attachment" "dms_vpc_policy" {
+resource "aws_iam_role_policy_attachment" "dms_vpc_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSVPCManagementRole"
   roles      = [aws_iam_role.dms_role.name]
 }
 
-resource "aws_iam_policy_attachment" "dms_cloudwatch_logs_policy" {
+resource "aws_iam_role_policy_attachment" "dms_cloudwatch_logs_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSCloudWatchLogsRole"
   roles      = [aws_iam_role.dms_role.name]
 }
