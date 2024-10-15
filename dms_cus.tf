@@ -1,6 +1,6 @@
 # IAM 역할 생성
 resource "aws_iam_role" "dms_vpc_role" {
-  name = "dms_role"
+  name = "dms_vpc_role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
