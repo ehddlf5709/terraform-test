@@ -166,6 +166,7 @@ resource "aws_dms_replication_task" "hf-task" {
     {
       "rule-type" = "selection",      # 수정
       "rule-id"   = "1",
+      "rule-name" = "select_all_tables",
       "rule-action" = "include",      # 수정
       filters = [
         {
