@@ -164,17 +164,15 @@ resource "aws_dms_replication_task" "hf-task" {
   table_mappings        = jsonencode({
     rules = [
     {
-      "rule-type" = "selection",      # 수정
+      "rule-type" = "selection",
       "rule-id"   = "1",
       "rule-name" = "select_all_tables",
-      "rule-action" = "include",      # 수정
-      filters = [
-        {
-          "filter-type" = "source",   # 수정
-          "schema-name" = "test",     # 소스 스키마 이름
-          "table-name"  = "%"         # 모든 테이블을 포함
-        }
-      ]
+      "rule-action" = "include",
+      "filters" = [],
+      "object-locator" = {
+        "schema-name" = "test",  # 소스 스키마 이름
+        "table-name"  = "%"      # 모든 테이블을 포함
+      }
     }
   ]
 })
