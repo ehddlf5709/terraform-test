@@ -17,6 +17,16 @@ resource "aws_iam_role" "dms_role" {
   })
 }
 
+resource "aws_iam_policy_attachment" "dms_vpc_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSVPCManagementRole"
+  roles      = [aws_iam_role.dms_role.name]
+}
+
+resource "aws_iam_policy_attachment" "dms_cloudwatch_logs_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSCloudWatchLogsRole"
+  roles      = [aws_iam_role.dms_role.name]
+}
+
 # IAM 정책 생성
 resource "aws_iam_policy" "dms_policy" {
   name        = "dms_policy"
@@ -36,6 +46,7 @@ resource "aws_iam_policy" "dms_policy" {
           "dms:StopReplicationTask",
           "dms:CreateReplicationSubnetGroup", 
           "dms:DeleteReplicationSubnetGroup", 
+          "dms:DescribeReplicationSubnetGroups", 
           "dms:ModifyReplicationSubnetGroup"
         ],
         Resource = "*"
@@ -45,6 +56,10 @@ resource "aws_iam_policy" "dms_policy" {
         Action = [
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups"
+          "ec2:CreateNetworkInterface",
+          "ec2:DeleteNetworkInterface",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:AttachNetworkInterface"
         ],
         Resource = "*"
       }
