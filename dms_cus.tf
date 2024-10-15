@@ -137,7 +137,7 @@ resource "aws_dms_endpoint" "hf-source" {
 
 # 타겟 데이터베이스 엔드포인트 생성
 resource "aws_dms_endpoint" "hf-target" {
-  endpoint_id    = "target-endpoint"
+  endpoint_id    = "hf-target-endpoint"
   endpoint_type  = "target"
   engine_name    = "mariadb"  
   username       = "ham"
@@ -160,7 +160,7 @@ resource "aws_dms_replication_task" "hf-task" {
   #source_endpoint_arn       = "arn:aws:dms:${var.region}:${data.aws_caller_identity.current.account_id}:endpoint:${aws_dms_endpoint.hf-source.endpoint_id}"
   #target_endpoint_arn       = "arn:aws:dms:${var.region}:${data.aws_caller_identity.current.account_id}:endpoint:${aws_dms_endpoint.hf-target.endpoint_id}"
   source_endpoint_arn          = aws_dms_endpoint.hf-source.endpoint_arn
-  target_endpoint_arn          = aws_dms_endpoint.target.endpoint_arn
+  target_endpoint_arn          = aws_dms_endpoint.hf-target.endpoint_arn
   table_mappings        = jsonencode({
     rules = [
       {
