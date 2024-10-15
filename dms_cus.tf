@@ -46,6 +46,7 @@ resource "aws_iam_policy" "dms_policy" {
           "dms:DescribeReplicationTasks",
           "dms:StartReplicationTask",
           "dms:StopReplicationTask",
+          "dms:DeleteReplicationTask",
           "dms:CreateReplicationSubnetGroup", 
           "dms:DeleteReplicationSubnetGroup", 
           "dms:DescribeReplicationSubnetGroups", 
@@ -64,7 +65,25 @@ resource "aws_iam_policy" "dms_policy" {
           "ec2:AttachNetworkInterface"
         ],
         Resource = "*"
-      }
+      },
+      {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+  "Effect": "Allow",
+  "Action": [
+    "rds:DescribeDBInstances",
+    "rds:ModifyDBInstance",
+    "rds:DescribeDBSecurityGroups"
+  ],
+  "Resource": "*"
+}
     ]
   })
 }
