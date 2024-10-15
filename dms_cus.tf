@@ -20,7 +20,7 @@ resource "aws_iam_role" "dms_role" {
 # IAM 역할에 AmazonDMSVPCManagementRole 정책 연결
 resource "aws_iam_role_policy_attachment" "dms_vpc_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSVPCManagementRole"
-  role      = aws_iam_role.dms_role.name]
+  role      = aws_iam_role.dms_role.name
 }
 
 # IAM 역할에 AmazonDMSCloudWatchLogsRole 정책 연결
